@@ -22,7 +22,7 @@ app.use("/api/media", mediaRoutes);
 
 // Root route
 app.get("/", (req, res) => {
-  res.send("Cineverse Backend API Running 🚀");
+  res.send("Cineverse Backend API Running ");
 });
 
 export default app;
