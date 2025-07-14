@@ -64,3 +64,23 @@ export const getAllMedia=async(req,res)=>{
   }
 
 };
+
+
+
+// Function to get media by ID
+
+export const getMediaById = async (req, res) => {
+  try {
+    const media = await Media.findById(req.params.id);
+
+    if (!media) {
+      return sendResponse(res, false, msg.notFound);
+    }
+
+    return sendResponse(res, true, msg.success, media);
+
+  } catch (error) {
+    console.error("Error in getMediaById:", error.message);
+    return sendError(res, error);
+  }
+};
