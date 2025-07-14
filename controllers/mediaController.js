@@ -35,7 +35,7 @@ export const addMedia = async (req, res) => {
     const newMedia = new Media({ ...req.body });
     await newMedia.save();
 
-    res.status(201).json(res,success,msg.success, newMedia);
+    return sendResponse(res,true,msg.success, newMedia);
 
   } catch (error) {
     console.error("Error in addMedia:", error.message);
@@ -44,4 +44,23 @@ export const addMedia = async (req, res) => {
       message: "Server error",
     });
   }
+
+
+};
+
+// Function to get all media
+
+export const getAllMedia=async(req,res)=>{
+
+   try{
+
+    const media = await Media.find()
+     return sendResponse(res, true, msg.success, media);
+
+   }
+  catch(error){
+    console.error("Error in getAllMedia:", error.message);
+    sendResponse(res, false, msg.error);
+  }
+
 };
