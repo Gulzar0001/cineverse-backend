@@ -1,4 +1,6 @@
 import Media from "../model/mediaModel.js";
+import { sendResponse } from "../helper/sendResponse.js";
+import { msg } from "../i18n/lang.js";
 
 export const addMedia = async (req, res) => {
   try {
@@ -21,12 +23,14 @@ export const addMedia = async (req, res) => {
       !posterUrl ||
       !type
     ) {
-      return res.status(400).json({
-        success: false,
-        message: "All required fields must be provided",
-      });
+      return sendResponse(res, false, msg.requiredField);
     }
 
+    
+   const existing = await Media.findOne({ title, releaseYear, type });
+    if (existing) {
+      return sendResponse(res, false, msg.duplicateMedia);
+    }
    
     const newMedia = new Media({ ...req.body });
     await newMedia.save();
