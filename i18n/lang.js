@@ -1,4 +1,4 @@
-export const msg = {
+export const msg = { // using helper and msgs for avoiding repitition
   requiredField: "All fields are required",
   notFound: "Item not found",
   userExist: "User already exists",

@@ -35,11 +35,7 @@ export const addMedia = async (req, res) => {
     const newMedia = new Media({ ...req.body });
     await newMedia.save();
 
-    res.status(201).json({
-      success: true,
-      message: "Media added successfully",
-      data: newMedia,
-    });
+    res.status(201).json(res,success,msg.success, newMedia);
 
   } catch (error) {
     console.error("Error in addMedia:", error.message);

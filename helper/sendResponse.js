@@ -1,4 +1,4 @@
-export const sendResponse = (res, status, msg, data = null) => {
+export const sendResponse = (res, status, msg, data = null) => { // setting respose for success and error
   res.status(status ? 200 : 400).json({
     status,
     message: msg,
